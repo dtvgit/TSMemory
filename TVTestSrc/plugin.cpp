@@ -245,10 +245,10 @@ public:
 		#undef _FILE_TYPE_
 		return &table;
 	}
-	static HINSTANCE m_hinst;
+	//static HINSTANCE m_hinst;
 };
 
-HINSTANCE ForAviutl::m_hinst=NULL;
+//HINSTANCE ForAviutl::m_hinst=NULL;
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -269,9 +269,9 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL,DWORD fdwReason,LPVOID lpvReserved)
 	}
 	return TRUE;
 }
-*/
 
 extern "C" HINSTANCE get_dll_handle()
 {
 	return ForAviutl::m_hinst;
 }
+*/
