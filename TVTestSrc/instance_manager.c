@@ -44,6 +44,8 @@ static INSTANCE *new_instance();
 static INSTANCE *find_instance(INSTANCE_LIST *list, void *instance);
 static void remove_from_list(INSTANCE_LIST *list, INSTANCE *elem);
 
+static HINSTANCE m_hinst = NULL;
+
 BOOL WINAPI DllMain(HINSTANCE inst, DWORD code, LPVOID reserved)
 {
 	// AviSynth ÇÃ LoadVFAPIPlugin ÇÕÉtÉ@ÉCÉãÇï¬Ç∂ÇÈç€Ç…
@@ -61,6 +63,7 @@ BOOL WINAPI DllMain(HINSTANCE inst, DWORD code, LPVOID reserved)
 	switch (code) {
 	case DLL_PROCESS_ATTACH:
 		initialize_instance_manager();
+		m_hinst = inst;
 		break;
 	case DLL_PROCESS_DETACH:
 		teardown_instance_manager();
@@ -68,6 +71,11 @@ BOOL WINAPI DllMain(HINSTANCE inst, DWORD code, LPVOID reserved)
 	}
 
 	return TRUE;
+}
+
+HINSTANCE get_dll_handle()
+{
+	return m_hinst;
 }
 
 void register_instance(void *instance, TEARDOWN_PROC teardown)
